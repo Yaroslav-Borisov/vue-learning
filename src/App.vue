@@ -1,33 +1,57 @@
 <template>
-    <div>
-        <div>
-            <button @click="addLike">like</button>
-            <button @click="addDislike">dislike</button>
-        </div>
-        <div>Количество лайков {{ likes }}</div>
-        <div>Количество дизлайков {{ dislikes }}</div>
-    </div>
+  <div>
+    <PostForm :createPost="createPost" />
+    <PostList :posts="posts" />
+  </div>
 </template>
 
 <script>
+import PostForm from './components/PostForm';
+import PostList from './components/PostList';
+
 export default {
-    data() {
-        return {
-            likes: 0,
-            dislikes: 5,
-        }
-    },
-    methods: {
-        addLike() {
-            this.likes += 1;
+  components: {
+    PostList,
+    PostForm,
+  },
+  data() {
+    return {
+      posts: [
+        {
+          id: 1,
+          title: 'Пост о JS',
+          body: 'Джава скрипт - это универсальный язык программирования',
         },
-        addDislike() {
-            this.dislikes += 1;
-        }
-    }
-}
+        {
+          id: 2,
+          title: 'Пост о JS 2',
+          body: 'Джава скрипт - это универсальный язык программирования 2',
+        },
+        {
+          id: 3,
+          title: 'Пост о JS 3',
+          body: 'Джава скрипт - это универсальный язык программирования 3',
+        },
+      ],
+    };
+  },
+  methods: {
+    createPost(newPostTitle, newPostBody) {
+      const newPost = {
+        id: Date.now(),
+        title: newPostTitle,
+        body: newPostBody,
+      };
+      this.posts = [...this.posts, newPost];
+    },
+  },
+};
 </script>
 
 <style>
-
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 </style>
