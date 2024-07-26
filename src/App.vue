@@ -1,6 +1,6 @@
 <template>
   <div>
-    <PostForm :createPost="createPost" />
+    <PostForm @createPost="createPost" />
     <PostList :posts="posts" />
   </div>
 </template>
@@ -36,12 +36,7 @@ export default {
     };
   },
   methods: {
-    createPost(newPostTitle, newPostBody) {
-      const newPost = {
-        id: Date.now(),
-        title: newPostTitle,
-        body: newPostBody,
-      };
+    createPost(newPost) {
       this.posts = [...this.posts, newPost];
     },
   },

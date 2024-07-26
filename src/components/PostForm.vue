@@ -2,30 +2,18 @@
   <form class="creating-form" @submit.prevent>
     <h3>Создание поста</h3>
     <input
-      v-bind:value="newPost.title"
-      @change="onNewPostTitleChange"
+      v-model="newPost.title"
       class="creating-form__input"
       type="text"
       placeholder="Название"
     />
-    <input
-      v-bind:value="newPost.body"
-      @change="onNewPostBodyChange"
-      class="creating-form__input"
-      type="text"
-      placeholder="Описание"
-    />
+    <input v-model="newPost.body" class="creating-form__input" type="text" placeholder="Описание" />
     <button class="creating-form__button" @click="onNewPostCreation">Создать</button>
   </form>
 </template>
 
 <script>
 export default {
-  props: {
-    createPost: {
-      required: true,
-    },
-  },
   data() {
     return {
       newPost: {
@@ -35,17 +23,13 @@ export default {
     };
   },
   methods: {
-    onNewPostTitleChange(event) {
-      console.log(event.target.value);
-      this.newPost.title = event.target.value;
-    },
-    onNewPostBodyChange(event) {
-      this.newPost.body = event.target.value;
-    },
     onNewPostCreation() {
-      this.createPost(this.newPost.title, this.newPost.body);
-      this.newPost.title = '';
-      this.newPost.body = '';
+      this.newPost.id = Date.now();
+      this.$emit('createPost', this.newPost);
+      this.newPost = {
+        title: '',
+        body: '',
+      };
     },
   },
 };
