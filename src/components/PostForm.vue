@@ -1,14 +1,9 @@
 <template>
   <form class="creating-form" @submit.prevent>
     <h3>Создание поста</h3>
-    <input
-      v-model="newPost.title"
-      class="creating-form__input"
-      type="text"
-      placeholder="Название"
-    />
-    <input v-model="newPost.body" class="creating-form__input" type="text" placeholder="Описание" />
-    <button class="creating-form__button" @click="onNewPostCreation">Создать</button>
+    <Input v-model="newPost.title" type="text" placeholder="Название" />
+    <Input v-model="newPost.body" type="text" placeholder="Описание" />
+    <Button class="creating-form__button" @click="onNewPostCreation">Создать</Button>
   </form>
 </template>
 
@@ -43,19 +38,5 @@ export default {
   max-width: 300px;
   margin-bottom: 10px;
   font-family: Arial, Helvetica, sans-serif;
-}
-
-.creating-form__input {
-  padding: 5px;
-  border-radius: 3px;
-}
-
-.creating-form__button {
-  margin: 0;
-  padding: 10px;
-  font-weight: 700;
-  background: none;
-  border: 2px solid #000000;
-  cursor: pointer;
 }
 </style>

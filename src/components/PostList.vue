@@ -1,12 +1,17 @@
 <template>
-  <div class="post" v-for="post in posts">
-    <div><b>Название:</b> {{ post.title }}</div>
-    <div><b>Описание:</b> {{ post.body }}</div>
+  <div class="posts">
+    <h3>Список постов</h3>
+    <PostItem v-for="post in posts" :post="post" />
   </div>
 </template>
 
 <script>
+import PostItem from './PostItem.vue';
+
 export default {
+  components: {
+    PostItem,
+  },
   props: {
     posts: {
       required: true,
@@ -16,10 +21,10 @@ export default {
 </script>
 
 <style scoped>
-.post {
-  margin-bottom: 15px;
-  padding: 15px;
+.posts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   font-family: Arial, Helvetica, sans-serif;
-  border: 2px solid #000000;
 }
 </style>
