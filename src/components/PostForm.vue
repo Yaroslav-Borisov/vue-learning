@@ -1,8 +1,8 @@
 <template>
   <form class="creating-form" @submit.prevent>
     <h3>Создание поста</h3>
-    <Input v-model="newPost.title" type="text" placeholder="Название" />
-    <Input v-model="newPost.body" type="text" placeholder="Описание" />
+    <Input v-model:value="newPost.title" type="text" placeholder="Название" />
+    <Input v-model:value="newPost.body" type="text" placeholder="Описание" />
     <Button class="creating-form__button" @click="onNewPostCreation">Создать</Button>
   </form>
 </template>

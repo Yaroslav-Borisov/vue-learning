@@ -1,8 +1,14 @@
 <template>
-  <div class="posts">
+  <div class="posts" v-if="posts.length > 0">
     <h3>Список постов</h3>
-    <PostItem v-for="post in posts" :post="post" />
+    <PostItem
+      v-for="post in posts"
+      :post="post"
+      :key="post.id"
+      @deletePost="$emit('deletePost', post)"
+    />
   </div>
+  <h3 v-else>Список постов пуст</h3>
 </template>
 
 <script>
@@ -25,6 +31,5 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  font-family: Arial, Helvetica, sans-serif;
 }
 </style>

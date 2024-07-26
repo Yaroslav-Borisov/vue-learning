@@ -1,7 +1,7 @@
 <template>
   <div>
     <PostForm @createPost="createPost" />
-    <PostList :posts="posts" />
+    <PostList :posts="posts" @deletePost="deletePost" />
   </div>
 </template>
 
@@ -39,6 +39,10 @@ export default {
     createPost(newPost) {
       this.posts = [...this.posts, newPost];
     },
+    deletePost(deletingPost) {
+      const index = this.posts.findIndex((post) => post.id === deletingPost.id);
+      this.posts = [...this.posts.slice(0, index), ...this.posts.slice(index + 1)];
+    },
   },
 };
 </script>
@@ -48,5 +52,6 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 </style>
